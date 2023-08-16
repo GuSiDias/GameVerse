@@ -6,6 +6,7 @@ import java.util.Scanner;
 import game.util.Cores;
 import game.model.Jogos;
 import game.model.Console;
+import game.model.Carrinho;
 import game.model.Pc;
 import game.controller.GameController;
 
@@ -14,6 +15,7 @@ public class Menu {
         int op;
 
         GameController jogos = new GameController();
+        Carrinho carrinho = new Carrinho();
         Scanner read = new Scanner(System.in);
         jogos.adicionar (new Console("Def Jam", "Luta", 58.99, 15, 2, 1));
         jogos.adicionar(new Console("The Last of Us", "Ação", 89.99, 10, 2, 2));
@@ -25,13 +27,32 @@ public class Menu {
         jogos.adicionar(new Console("Resident Evil Village", "Horror", 64.99, 7, 2, 1));
         jogos.adicionar(new Console("The Witcher 3", "RPG", 59.99, 11, 2, 3));
         jogos.adicionar(new Console("Grand Theft Auto V", "Ação", 39.99, 25, 2, 1));
+        jogos.adicionar(new Pc("Cyberpunk 2077", "RPG", 49.99, 10, 1, 1));
+        jogos.adicionar(new Pc("The Sims 4", "Simulação", 39.99, 15, 1, 3));
+        jogos.adicionar(new Pc("Diablo III", "RPG", 29.99, 8, 1, 2));
+        jogos.adicionar(new Pc("World of Warcraft", "MMORPG", 14.99, 5, 1, 1));
+        jogos.adicionar(new Pc("Civilization VI", "Estratégia", 44.99, 12, 1, 3));
+        jogos.adicionar(new Pc("Stardew Valley", "Simulação", 19.99, 20, 1, 4));
+        jogos.adicionar(new Pc("The Witcher 3", "RPG", 49.99, 11, 1, 1));
+        jogos.adicionar(new Pc("Portal 2", "Puzzle", 9.99, 7, 1, 2));
+        jogos.adicionar(new Pc("Counter-Strike: Global Offensive", "Tiro", 0.00, 2, 1, 1));
+        jogos.adicionar(new Pc("Cities: Skylines", "Simulação", 29.99, 15, 1, 3));
+        jogos.adicionar(new Pc("DOOM Eternal", "Ação", 39.99, 6, 1, 2));
+        jogos.adicionar(new Pc("Sid Meier's Civilization V", "Estratégia", 29.99, 9, 1, 4));
 String genero = "Ação";
 
         List<Jogos> jogosPorGenero = jogos.listarPorGenero(genero);
 
         for(Jogos jogo : jogosPorGenero){
             jogo.visualizar();
+            jogo.visualizar(true);
         }
+
+        String nome = "FIFA 22";
+
+        jogos.adicionarJogo(nome);
+
+
 
 
      do{
@@ -49,7 +70,6 @@ String genero = "Ação";
              System.out.println("  ║                 1-Listar todos os jogos             ║");
              System.out.println("  ║                 2-Pesquisar Jogos                   ║");
              System.out.println("  ║                 3-Carrinho                          ║");
-             System.out.println("  ║                 4-Sobre                             ║");
              System.out.println("  ║                 0-Sair                              ║");
              System.out.println("  ╚═════════════════════════════════════════════════════╝");
              System.out.print("  Escolha uma opção: " + Cores.TEXT_RESET);
@@ -70,6 +90,7 @@ String genero = "Ação";
                  System.out.println("╔═══════════════════════╗");
                  System.out.println("║ Listar todos os jogos ║");
                  System.out.println("╚═══════════════════════╝");
+                 jogos.todosJogos();
                  break;
              case 2:
                  System.out.println("\n\n\n"+Cores.TEXT_GREEN);
@@ -82,6 +103,8 @@ String genero = "Ação";
                  System.out.println("╔══════════╗");
                  System.out.println("║ Carrinho ║");
                  System.out.println("╚══════════╝");
+                 carrinho.exibirCarrinho();
+                 carrinho.formatoTotal();
                  break;
              case 0:
                  System.out.print("\nQuer realmente sair do sistema (s/n)");

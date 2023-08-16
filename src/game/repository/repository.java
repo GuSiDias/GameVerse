@@ -8,6 +8,7 @@ public interface repository {
     void todosJogos();
     void adicionar(Jogos jogos);
     void procurarPorNome(String nome);
+    void adicionarJogo(String nome);
     void finalizarCompra();
     List<Jogos> listarPorGenero(String genero);
     List<Jogos> listarPorConsoles();

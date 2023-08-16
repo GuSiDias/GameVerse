@@ -11,6 +11,7 @@ public class  Jogos {
     private double preco;
     private int estoque;
     private int plataforma;
+    private String codigo;
 
 
     public Jogos(String nome, String genero, double preco, int estoque, int plataforma) {
@@ -19,6 +20,7 @@ public class  Jogos {
         this.preco = preco;
         this.estoque = estoque;
         this.plataforma = plataforma;
+        this.codigo = game.controller.GameController.gerarCodigo();
     }
 
     public String getNome() {
@@ -90,15 +92,34 @@ public class  Jogos {
                 break;
         }
 
-        System.out.println(Cores.TEXT_GREEN +"╔═══════════════╗");
-        System.out.println("║ Dados do Jogo ║");
-        System.out.println("╚═══════════════╝");
-        System.out.println(" Nome: "+nome);
-        System.out.println(" Genêro: "+genero);
-        System.out.println(" Preço: "+this.formatoMoeda());
-        System.out.println(" Estoque: "+estoque+" Unidades");
-        System.out.println(" Plataforma: "+plataforma+Cores.TEXT_RESET);
+
+            System.out.println(Cores.TEXT_GREEN + "╔═══════════════╗");
+            System.out.println("║ Dados do Jogo ║");
+            System.out.println("╚═══════════════╝");
+            System.out.println(" Nome: " + nome);
+            System.out.println(" Genêro: " + genero);
+            System.out.println(" Preço: " + this.formatoMoeda());
+            System.out.println(" Estoque: " + estoque + " Unidades");
+            System.out.println(" Plataforma: " + plataforma + Cores.TEXT_RESET);
+
+        }
+
+        public void visualizar(boolean gift){
+
+            if(gift){
+                System.out.println(Cores.TEXT_GREEN +"╔═══════════╗");
+                System.out.println("║ Gift Card ║");
+                System.out.println("╚═══════════╝");
+                System.out.println(" Codigo: "+codigo+Cores.TEXT_RESET);
+            }
+            else {
+
+                visualizar();
+            }
+
+
 
 
     }
+
 }

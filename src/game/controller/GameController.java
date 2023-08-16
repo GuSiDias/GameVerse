@@ -6,11 +6,12 @@ import game.model.Jogos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameController implements game.repository.repository{
 
     private List<Jogos> todosJogos = new ArrayList<>();
-    private Carrinho carrinho;
+    public Carrinho carrinho = new Carrinho();
 
     @Override
     public void todosJogos() {
@@ -35,12 +36,37 @@ public class GameController implements game.repository.repository{
             System.out.println("O jogo não foi encontrado!!");
 
     }
+    @Override
+    public void adicionarJogo(String nome) {
+        Jogos jogos = buscarJogos(nome);
+
+        if(jogos != null) {
+            carrinho.adicionarJogo(jogos);
+            System.out.println("O jogo foi Adicionado ao Carrinho!!");
+        } else
+            System.out.println("O jogo não foi encontrado!!");
+
+    }
 
     @Override
     public void finalizarCompra() {
         carrinho.finalizarCompra();
         System.out.println("Compra realizada com sucesso!!");
 
+    }
+
+    public static String gerarCodigo() {
+        String caracter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        StringBuilder codigo = new StringBuilder();
+        Random random = new Random();
+
+        for(int i = 0; i < 16;i++){
+            int indiceAle = random.nextInt(caracter.length());
+            char caracterAle = caracter.charAt(indiceAle);
+            codigo.append(caracterAle);
+        }
+
+        return codigo.toString();
     }
 
     @Override
@@ -80,7 +106,7 @@ public class GameController implements game.repository.repository{
         return jogosPorPlataforma;
 
     }
-    public Jogos buscarJogos(String nome){
+    private Jogos buscarJogos(String nome){
         for (Jogos jogos : todosJogos){
             if(jogos.getNome().equalsIgnoreCase(nome)){
                 return jogos;
@@ -89,4 +115,8 @@ public class GameController implements game.repository.repository{
         }
         return null;
     }
+
+    public void visualizar() {
+    }
 }
+

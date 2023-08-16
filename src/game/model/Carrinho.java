@@ -1,16 +1,17 @@
 package game.model;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import game.model.Jogos;
+import game.controller.GameController;
+import game.repository.repository;
 
 public class Carrinho {
-    List<Jogos> jogoNoCarrinho;
 
-    public Carrinho(){
-        jogoNoCarrinho = new ArrayList<>();
-    }
-    public void adicionarJogo(Jogos jogos){
+    private ArrayList<Jogos> jogoNoCarrinho = new ArrayList<>();
+
+    public void adicionarJogo(Jogos jogos) {
         jogoNoCarrinho.add(jogos);
     }
 
@@ -30,12 +31,18 @@ public class Carrinho {
 
     }
 
-    public double calcularTotal(){
+    public double calcular(){
         double total = 0;
         for (Jogos jogos : jogoNoCarrinho){
             total+= jogos.getPreco();
         }
         return total;
+    }
+    public String formatoTotal(){
+        NumberFormat nf =  NumberFormat.getCurrencyInstance();
+        nf.setMinimumFractionDigits(2);
+        String formatMoeda = nf.format(calcular());
+        return formatMoeda;
     }
 
     public void finalizarCompra(){

@@ -136,7 +136,5 @@ public class GameController implements game.repository.repository{
                 .orElse(null);
     }
 
-    public void visualizar() {
-    }
 }
 

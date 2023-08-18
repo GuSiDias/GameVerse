@@ -11,7 +11,7 @@ public class  Jogos {
     private double preco;
     private int estoque;
     private int plataforma;
-    private String codigo;
+    private final String codigo;
 
 
     public Jogos(String nome, String genero, double preco, int estoque, int plataforma) {

@@ -3,6 +3,7 @@ package game.controller;
 import game.model.Carrinho;
 import game.model.Console;
 import game.model.Jogos;
+import game.util.Cores;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,11 @@ public class GameController implements game.repository.repository{
         }
 
     }
+    @Override
+    public void exibirCarrinho() {
+       carrinho.exibirCarrinho();
+
+    }
 
     @Override
     public void adicionar(Jogos jogos) {
@@ -30,10 +36,13 @@ public class GameController implements game.repository.repository{
     public void procurarPorNome(String nome) {
         Jogos jogos = buscarJogos(nome);
 
-        if(jogos != null)
+        if(jogos != null) {
+            System.out.println(Cores.TEXT_GREEN + "\n\t\t╔═════════════════╗");
+            System.out.println("\t\t║ Dados dos Jogos ║");
+            System.out.println("\t\t╚═════════════════╝");
             jogos.visualizar();
-        else
-            System.out.println("O jogo não foi encontrado!!");
+        }else
+            System.out.println(Cores.TEXT_GREEN+"O jogo não foi encontrado!!");
 
     }
     @Override
@@ -42,16 +51,27 @@ public class GameController implements game.repository.repository{
 
         if(jogos != null) {
             carrinho.adicionarJogo(jogos);
-            System.out.println("O jogo foi Adicionado ao Carrinho!!");
+            System.out.println(Cores.TEXT_GREEN+"O jogo foi Adicionado ao Carrinho!!");
         } else
-            System.out.println("O jogo não foi encontrado!!");
+            System.out.println(Cores.TEXT_GREEN+"O jogo não foi encontrado!!");
 
     }
 
     @Override
+    public void removerJogo(String nome) {
+        Jogos jogos = buscarJogos(nome);
+        if(jogos != null) {
+            carrinho.removerJogo(jogos);
+            System.out.println(Cores.TEXT_GREEN+"O jogo foi Removido ao Carrinho!!");
+        } else
+            System.out.println(Cores.TEXT_GREEN+"O jogo não foi encontrado!!");
+
+    }
+
+
+    @Override
     public void finalizarCompra() {
         carrinho.finalizarCompra();
-        System.out.println("Compra realizada com sucesso!!");
 
     }
 
@@ -76,19 +96,22 @@ public class GameController implements game.repository.repository{
             if (jogos.getGenero().equalsIgnoreCase(genero)){
                 jogosPorGenero.add(jogos);
             }
-
         }
         return jogosPorGenero;
     }
 
     @Override
-    public List<Jogos> listarPorConsoles() {
+    public List<Jogos> listarPorConsoles(int console) {
         List<Jogos> jogosPorConsole = new ArrayList<>();
 
         for(Jogos jogos : todosJogos){
             if(jogos instanceof Console){
-                Console console = (Console) jogos;
-                jogosPorConsole.add(console);
+                Console consoleGame = (Console) jogos;
+                if (consoleGame.getConsoles() == console){
+                    jogosPorConsole.add(consoleGame);
+                }
+
+
             }
         }
         return jogosPorConsole;
@@ -107,13 +130,10 @@ public class GameController implements game.repository.repository{
 
     }
     private Jogos buscarJogos(String nome){
-        for (Jogos jogos : todosJogos){
-            if(jogos.getNome().equalsIgnoreCase(nome)){
-                return jogos;
-            }
-
-        }
-        return null;
+        return todosJogos.stream()
+                .filter(jogo -> jogo.getNome().equalsIgnoreCase(nome))
+                .findFirst()
+                .orElse(null);
     }
 
     public void visualizar() {

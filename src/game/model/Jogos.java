@@ -93,24 +93,20 @@ public class  Jogos {
         }
 
 
-            System.out.println(Cores.TEXT_GREEN + "╔═══════════════╗");
-            System.out.println("║ Dados do Jogo ║");
-            System.out.println("╚═══════════════╝");
-            System.out.println(" Nome: " + nome);
-            System.out.println(" Genêro: " + genero);
-            System.out.println(" Preço: " + this.formatoMoeda());
-            System.out.println(" Estoque: " + estoque + " Unidades");
-            System.out.println(" Plataforma: " + plataforma + Cores.TEXT_RESET);
+
+            System.out.println(Cores.TEXT_GREEN +"\t\tNome: " + nome);
+            System.out.println(" \t\tGenêro: " + genero);
+            System.out.println(" \t\tPreço: " + this.formatoMoeda());
+            System.out.println(" \t\tEstoque: " + estoque + " Unidades");
+            System.out.println(" \t\tPlataforma: " + plataforma + Cores.TEXT_RESET);
 
         }
 
         public void visualizar(boolean gift){
 
             if(gift){
-                System.out.println(Cores.TEXT_GREEN +"╔═══════════╗");
-                System.out.println("║ Gift Card ║");
-                System.out.println("╚═══════════╝");
-                System.out.println(" Codigo: "+codigo+Cores.TEXT_RESET);
+
+                System.out.println(Cores.TEXT_GREEN +" Codigo: "+codigo);
             }
             else {
 

@@ -1,5 +1,7 @@
 package game.model;
 
+import game.util.Cores;
+
 public class Pc extends Jogos{
 
     private int distribuidor;
@@ -36,6 +38,7 @@ public class Pc extends Jogos{
                 distribuidor = "Uplay";
                 break;
         }
-        System.out.println(" Distribuidor: "+distribuidor);
+        System.out.println(Cores.TEXT_GREEN+" \t\tDistribuidor: "+distribuidor);
+        System.out.println("\t\t═══════════════════════");
     }
 }

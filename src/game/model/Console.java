@@ -1,5 +1,7 @@
 package game.model;
 
+import game.util.Cores;
+
 public class Console extends Jogos{
 
     private int consoles;
@@ -35,7 +37,8 @@ public class Console extends Jogos{
                 consoles = "Nintendo";
                 break;
         }
-        System.out.println(" Consoles: "+consoles);
+        System.out.println(Cores.TEXT_GREEN+" \t\tConsoles: "+consoles);
+        System.out.println("\t\t═══════════════════════");
 
     }
 }
